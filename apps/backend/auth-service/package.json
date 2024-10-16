@@ -1,0 +1,33 @@
+{
+  "name": "auth-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "tsoa:gen": "tsoa spec && tsoa routes",
+    "dev": "yarn tsoa:gen && nodemon src/server.ts",
+    "build": "node build-script.js",
+    "start:local": "pm2 start ecosystem.local.config.js",
+    "start": "pm2 start ecosystem.config.js",
+    "restart": "pm2 reload ecosystem.config.js",
+    "test": "cross-env NODE_ENV=testing jest",
+    "test:watch": "cross-env NODE_ENV=testing jest --watch",
+    "db:insert": "ts-node src/database/scripts/insert-data",
+    "db:dump": "ts-node src/database/scripts/dump-data"
+  },
+  "dependencies": {
+    "@types/swagger-ui-express": "^4.1.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "joi": "^17.13.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.5",
+    "swagger-ui-express": "^5.0.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsoa": "^6.5.0",
+    "typescript": "^5.6.3"
+  }
+}

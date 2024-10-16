@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "monorepo-api-gateway",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "apps/backend/*"
+  ],
+  "scripts": {
+    "start": "concurrently \"yarn workspace product-service dev\"  \"yarn workspace auth-service dev\" \"yarn workspace api-gateway dev\"",
+    "start:camformant-client": "yarn workspace camformant-client dev",
+    "start:dashboard": "concurrently \"yarn workspace ms-ui-components watch\" \"yarn workspace camformant-dashboard dev\"",
+    "start:product-service": "yarn workspace product-service dev",
+    "start:auth-service": "yarn workspace auth-service dev",
+    "docker:dev": "docker-compose -f ./apps/backend/docker-compose.dev.yml up -d",
+    "docker:local": "docker-compose -f ./apps/backend/docker-compose.local.yml up -d",
+    "docker:stop": "docker-compose -f ./apps/backend/docker-compose.dev.yml down"
+  },
+  "dependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

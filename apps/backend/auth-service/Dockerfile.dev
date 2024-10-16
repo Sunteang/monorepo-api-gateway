@@ -1,0 +1,15 @@
+FROM node:20-alpha3.19
+WORKDIR /app
+
+COPY package.json ./
+
+RUN npm install && npm install -g nodemon
+
+COPY tsconfig.json ./
+COPY nodemon.json ./
+COPY src ./src
+COPY tsoa.json ./
+
+EXPOSE 4002
+
+CMD [ "npm","run","dev" ]
