@@ -10,7 +10,7 @@ const app = express();
 // ========================
 app.use(express.json()); // Help to get the json from request body
 
-app.get("/v1/gateway-health", (_req: Request, res: Response) => {
+app.get("/v1/gateway", (_req: Request, res: Response) => {
   res.status(200).json({
     message: "OK",
   });
