@@ -15,6 +15,9 @@ services:
       - AUTH_SERVICE_URL=http://auth:4002
     volumes:
       - ./api-gateway/src:/app/src # HOT RELOADING
+    networks:
+      - backend_network
+
   product:
     container_name: product_service_container
     build:
@@ -26,9 +29,11 @@ services:
     env_file: ./product-service/src/configs/.env.development
     environment:
       - DOCKER_ENV=true
-      - NOTIFICATION_SERVICE_URL=http://product:4001
     volumes:
       - ./product-service/src:/app/src # HOT RELOADING
+    networks:
+      - backend_network
+
   auth:
     container_name: auth_service_container
     build:
@@ -40,6 +45,11 @@ services:
     env_file: ./auth-service/src/configs/.env.development
     environment:
       - DOCKER_ENV=true
-      - USER_SERVICE_URL=http://auth:4002
     volumes:
       - ./auth-service/src:/app/src # HOT RELOADING
+    networks:
+      - backend_network
+
+networks:
+  backend_network:
+    driver: bridge

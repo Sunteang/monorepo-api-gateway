@@ -9,6 +9,7 @@ type Config = {
   CLIENT_SECRET: string;
   REDIRECT: string;
   COGNITO_DOMAIN: string;
+  MONGO_URL: string;
 };
 
 function loadConfig(): Config {
@@ -23,6 +24,7 @@ function loadConfig(): Config {
     CLIENT_SECRET: Joi.string().required(),
     REDIRECT: Joi.string().required(),
     COGNITO_DOMAIN: Joi.string().required(),
+    MONGO_URL: Joi.string().required(),
   })
     .unknown()
     .required();
@@ -38,7 +40,9 @@ function loadConfig(): Config {
     CLIENT_SECRET: envVars.CLIENT_SECRET,
     REDIRECT: envVars.REDIRECT,
     COGNITO_DOMAIN: envVars.COGNITO_DOMAIN,
+    MONGO_URL: envVars.MONGO_URL,
   };
 }
+
 const config = loadConfig();
 export default config;

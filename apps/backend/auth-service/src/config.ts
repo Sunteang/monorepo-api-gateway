@@ -1,44 +1,56 @@
+//v2
+// config.ts
 import dotenv from "dotenv";
 import path from "path";
 import Joi from "joi";
 
 type Config = {
-  NODE_ENV: string;
-  PORT: number;
-  CLIENT_ID: string;
-  CLIENT_SECRET: string;
-  REDIRECT: string;
-  COGNITO_DOMAIN: string;
+  env: string;
+  port: number;
+  mongodbUrl: string;
+  cognito: {
+    userPoolId: string;
+    clientId: string;
+    clientSecret: string;
+    region: string;
+  };
+  clientUrl: string;
 };
 
 function loadConfig(): Config {
-  const NODE_ENV = process.env.NODE_ENV || "development";
-  const envPath = path.resolve(__dirname, `./configs/.env.${NODE_ENV}`);
+  const env = process.env.NODE_ENV || "development";
+  const envPath = path.resolve(__dirname, `./configs/.env.${env}`);
   dotenv.config({ path: envPath });
 
   const envVarsSchema = Joi.object({
     NODE_ENV: Joi.string().required(),
-    PORT: Joi.number().required(),
-    CLIENT_ID: Joi.string().required(),
-    CLIENT_SECRET: Joi.string().required(),
-    REDIRECT: Joi.string().required(),
-    COGNITO_DOMAIN: Joi.string().required(),
+    PORT: Joi.number().default(3000),
+    MONGODB_URL: Joi.string().required(),
+    COGNITO_USER_POOL_ID: Joi.string().required(),
+    COGNITO_CLIENT_ID: Joi.string().required(),
+    COGNITO_REGION: Joi.string().required(),
+    COGNITO_CLIENT_SECRET: Joi.string().required(),
   })
     .unknown()
     .required();
+
   const { value: envVars, error } = envVarsSchema.validate(process.env);
   if (error) {
     throw new Error(`Config validation error: ${error.message}`);
   }
-
   return {
-    NODE_ENV: envVars.NODE_ENV,
-    PORT: envVars.PORT,
-    CLIENT_ID: envVars.CLIENT_ID,
-    CLIENT_SECRET: envVars.CLIENT_SECRET,
-    REDIRECT: envVars.REDIRECT,
-    COGNITO_DOMAIN: envVars.COGNITO_DOMAIN,
+    env: envVars.NODE_ENV,
+    port: envVars.PORT,
+    mongodbUrl: envVars.MONGODB_URL,
+    clientUrl: "http://localhost:3000",
+    cognito: {
+      userPoolId: envVars.COGNITO_USER_POOL_ID,
+      clientId: envVars.COGNITO_CLIENT_ID,
+      clientSecret: envVars.COGNITO_CLIENT_SECRET,
+      region: envVars.COGNITO_REGION,
+    },
   };
 }
-const config = loadConfig();
-export default config;
+
+const configs = loadConfig();
+export default configs;

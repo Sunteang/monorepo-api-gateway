@@ -1,11 +1,19 @@
 import app from "./app";
-import config from "./config";
+import connectToMongoDB from "./database/connection";
+import configs from "./config";
 
-function runSever() {
-  app.listen(config.PORT, () => {
-    console.log("=========================================>");
-    console.log("the auth's server is running on port:", config.PORT);
-    console.log("=========================================>");
-  });
+async function run() {
+  try {
+    await connectToMongoDB();
+    app.listen(configs.port, () => {
+      console.log("===============================>");
+      console.log(`auth's server running port: ${configs.port}`);
+      console.log("===============================>");
+    });
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
 }
-runSever();
+
+run();

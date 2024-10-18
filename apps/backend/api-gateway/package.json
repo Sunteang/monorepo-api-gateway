@@ -4,10 +4,24 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon --legacy-watch --ext ts,json --exec ts-node src/server.ts",
+    "start": "ts-node src/app.ts",
+    "build": "tsc"
   },
   "dependencies": {
+    "aws-jwt-verify": "^4.0.1",
     "axios": "^1.7.7",
-    "http-proxy-middleware": "^3.0.3"
+    "express": "^4.21.1",
+    "http-proxy-middleware": "^3.0.3",
+    "jwt-decode": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^5.0.0",
+    "@types/joi": "^17.2.3",
+    "nodemon": "^2.0.0",
+    "ts-node": "^10.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^4.0.0"
   }
 }
