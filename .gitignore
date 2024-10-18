@@ -1,2 +1,10 @@
 node_modules
 yarn.lock
+
+# Ignore environment configuration files
+apps/backend/auth-service/src/configs/.env.development
+apps/backend/api-gateway/src/configs/.env.development
+apps/backend/product-service/src/configs/.env.development
+
+# Ignore all .env.development files under backend
+apps/backend/*/src/configs/.env.development
