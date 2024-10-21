@@ -13,8 +13,10 @@ type Config = {
     clientId: string;
     clientSecret: string;
     region: string;
+    domain: string; //new
   };
   clientUrl: string;
+  redirect: string; //new
 };
 
 function loadConfig(): Config {
@@ -30,6 +32,7 @@ function loadConfig(): Config {
     COGNITO_CLIENT_ID: Joi.string().required(),
     COGNITO_REGION: Joi.string().required(),
     COGNITO_CLIENT_SECRET: Joi.string().required(),
+    COGNITO_DOMAIN: Joi.string().required(), //new
   })
     .unknown()
     .required();
@@ -43,11 +46,13 @@ function loadConfig(): Config {
     port: envVars.PORT,
     mongodbUrl: envVars.MONGODB_URL,
     clientUrl: "http://localhost:3000",
+    redirect: "http://localhost:3000/auth/google/callback", //new
     cognito: {
       userPoolId: envVars.COGNITO_USER_POOL_ID,
       clientId: envVars.COGNITO_CLIENT_ID,
       clientSecret: envVars.COGNITO_CLIENT_SECRET,
       region: envVars.COGNITO_REGION,
+      domain: envVars.COGNITO_DOMAIN, //new
     },
   };
 }

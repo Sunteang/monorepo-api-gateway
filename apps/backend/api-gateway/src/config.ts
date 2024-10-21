@@ -10,6 +10,11 @@ type Config = {
   REDIRECT: string;
   COGNITO_DOMAIN: string;
   MONGO_URL: string;
+  AUTH_SERVICE_URL: string;
+  PRODUCT_SERVICE_URL: string;
+  USER_SERVICE_URL: string;
+  JOB_SERVICE_URL: string;
+  NOTIFICATION_SERVICE_URL: string;
 };
 
 function loadConfig(): Config {
@@ -25,6 +30,11 @@ function loadConfig(): Config {
     REDIRECT: Joi.string().required(),
     COGNITO_DOMAIN: Joi.string().required(),
     MONGO_URL: Joi.string().required(),
+    AUTH_SERVICE_URL: Joi.string().required(),
+    PRODUCT_SERVICE_URL: Joi.string().required(),
+    USER_SERVICE_URL: Joi.string().required(),
+    JOB_SERVICE_URL: Joi.string().required(),
+    NOTIFICATION_SERVICE_URL: Joi.string().required(),
   })
     .unknown()
     .required();
@@ -41,6 +51,11 @@ function loadConfig(): Config {
     REDIRECT: envVars.REDIRECT,
     COGNITO_DOMAIN: envVars.COGNITO_DOMAIN,
     MONGO_URL: envVars.MONGO_URL,
+    AUTH_SERVICE_URL: envVars.AUTH_SERVICE_URL,
+    PRODUCT_SERVICE_URL: envVars.AUTH_SERVICE_URL,
+    USER_SERVICE_URL: envVars.USER_SERVICE_URL,
+    JOB_SERVICE_URL: envVars.JOB_SERVICE_URL,
+    NOTIFICATION_SERVICE_URL: envVars.NOTIFICATION_SERVICE_URL,
   };
 }
 
