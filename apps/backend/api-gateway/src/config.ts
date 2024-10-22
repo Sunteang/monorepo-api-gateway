@@ -15,6 +15,10 @@ type Config = {
   USER_SERVICE_URL: string;
   JOB_SERVICE_URL: string;
   NOTIFICATION_SERVICE_URL: string;
+  AWS_CLOUDWATCH_LOGS_REGION: string;
+  AWS_CLOUDWATCH_LOGS_GROUP_NAME: string;
+  AWS_ACCESS_KEY_ID: string;
+  AWS_SECRET_ACCESS_KEY: string;
 };
 
 function loadConfig(): Config {
@@ -35,6 +39,10 @@ function loadConfig(): Config {
     USER_SERVICE_URL: Joi.string().required(),
     JOB_SERVICE_URL: Joi.string().required(),
     NOTIFICATION_SERVICE_URL: Joi.string().required(),
+    AWS_CLOUDWATCH_LOGS_REGION: Joi.string().required(),
+    AWS_CLOUDWATCH_LOGS_GROUP_NAME: Joi.string().required(),
+    AWS_ACCESS_KEY_ID: Joi.string().required(),
+    AWS_SECRET_ACCESS_KEY: Joi.string().required(),
   })
     .unknown()
     .required();
@@ -56,6 +64,10 @@ function loadConfig(): Config {
     USER_SERVICE_URL: envVars.USER_SERVICE_URL,
     JOB_SERVICE_URL: envVars.JOB_SERVICE_URL,
     NOTIFICATION_SERVICE_URL: envVars.NOTIFICATION_SERVICE_URL,
+    AWS_CLOUDWATCH_LOGS_REGION: envVars.AWS_CLOUDWATCH_LOGS_REGION,
+    AWS_CLOUDWATCH_LOGS_GROUP_NAME: envVars.AWS_CLOUDWATCH_LOGS_GROUP_NAME,
+    AWS_ACCESS_KEY_ID: envVars.AWS_ACCESS_KEY_ID,
+    AWS_SECRET_ACCESS_KEY: envVars.AWS_SECRET_ACCESS_KEY,
   };
 }
 

@@ -1,5 +1,12 @@
 import app from "./app";
 import config from "./config";
+import createLogger from "./utils/logger";
+
+export const gatewayLogger = createLogger({
+  service: "api-gateway",
+  level: "info",
+  logGroupName: config.AWS_CLOUDWATCH_LOGS_GROUP_NAME,
+});
 
 async function runServer() {
   try {

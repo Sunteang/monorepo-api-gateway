@@ -27,7 +27,7 @@ const verifier = CognitoJwtVerifier.create({
   clientId: clientId,
 });
 
-// 1. routeConfigMiddleware
+// 1. routeConfigMiddleware -->
 export const routeConfigMiddleware = (
   req: Request,
   _res: Response,
@@ -56,7 +56,7 @@ export const routeConfigMiddleware = (
   next();
 };
 
-// 2. authenticateToken
+// 2. authenticateToken -->
 export const authenticateToken = async (
   req: Request,
   _res: Response,
@@ -112,7 +112,7 @@ export const authenticateToken = async (
   }
 };
 
-// 3. authorizeRole
+// 3. authorizeRole -->
 export const authorizeRole = (
   req: Request,
   _res: Response,
