@@ -1,0 +1,17 @@
+node_modules
+dist
+
+.dockerignore
+.env*
+.env
+.git
+logs
+coverage
+
+src/configs/.env.development
+
+# Ignore environment files
+src/configs/.env.development
+src/configs/.env.production
+src/configs/.env.test
+build/configs/.env.production
